@@ -1,0 +1,38 @@
+$ mkdir my-pwa && cd my-pwa
+import React from 'react';
+import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Navbar } from './components/Navbar';
+import { BookingPage } from './pages/BookingPage';
+import { AdminPage } from './pages/AdminPage';
+
+// Simple footer component
+const Footer = () => (
+  <footer className="bg-white border-t border-slate-200 py-8 mt-12">
+    <div className="max-w-5xl mx-auto px-4 text-center text-slate-500 text-sm">
+      <p className="mb-2 font-semibold text-brand-blue">Casaleiz Psicología</p>
+      <p>Don Cristian 19, 4ºB, 29007 Málaga</p>
+      <p className="mt-4 text-xs opacity-60">© 2024 Todos los derechos reservados.</p>
+    </div>
+  </footer>
+);
+
+const App: React.FC = () => {
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col font-sans text-slate-800 bg-[#F2F5F7]">
+        <Navbar />
+        <main className="flex-grow">
+          <Routes>
+            <Route path="/" element={<BookingPage />} />
+            <Route path="/booking" element={<Navigate to="/" replace />} />
+            <Route path="/admin" element={<AdminPage />} />
+            <Route path="*" element={<Navigate to="/" replace />} />
+          </Routes>
+        </main>
+        <Footer />
+      </div>
+    </Router>
+  );
+};
+
+export default App;
